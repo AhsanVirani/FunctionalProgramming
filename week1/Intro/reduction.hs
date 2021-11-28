@@ -1,0 +1,1 @@
+reduction = print $ foldr (+) 0 [10, 11, 12]
