@@ -1,4 +1,5 @@
 import Data.Char (toLower)
+import Data.Bool (Bool)
 
 -- Creating custom map function
 -- Base case when list is empty
@@ -28,10 +29,10 @@ myConcat' = myFoldr (++) []
 -- filter
 myFilter :: (a -> Bool) -> [a] -> [a]
 myFilter p [] = []
-myFilter p (x:xs) = if p x then x : myFilter p xs
-                           else  myFilter p xs
+myFilter p (x:xs) = if p x then x : myFilter p xs else myFilter p xs
 
 myFilter' :: (a -> Bool) -> [a] -> [a]
+myFilter' p [] = []
 myFilter' p (x:xs) 
-    | p x       = x : myFilter' p xs 
+    | p x = x : myFilter' p xs 
     | otherwise = myFilter' p xs
