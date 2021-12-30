@@ -6,10 +6,6 @@ import Prelude
 getGrades :: String -> [Int]
 getGrades x = read <$> words x :: [Int]
 
--- -- diff constraint to safisfy
--- diffConstraint :: Int -> Bool 
--- diffConstraint x = if mod x 5 < 3 then True else False
-
 -- Rounding Function takes in an Int and returns a rounded Int
 roundingFunc :: Int -> Int
 roundingFunc num 
@@ -18,5 +14,5 @@ roundingFunc num
     where diffConstraint = if mod num 5 < 3 then True else False
 
 -- Apply rounding function to getGrades
-roundedGrades :: String -> [Int]
-roundedGrades x = roundingFunc <$> getGrades x
+roundedGrades :: String -> String
+roundedGrades x = unlines $ show <$> (roundingFunc <$> getGrades x)
