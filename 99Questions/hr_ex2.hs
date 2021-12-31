@@ -15,4 +15,4 @@ roundingFunc num
 
 -- Apply rounding function to getGrades
 roundedGrades :: String -> String
-roundedGrades x = unlines $ show <$> (roundingFunc <$> getGrades x)
+roundedGrades x = unlines $ show <$> (roundingFunc <$> tail (getGrades x))
