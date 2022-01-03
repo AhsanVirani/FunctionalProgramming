@@ -1,5 +1,6 @@
 module BinaryTree where
 import Prelude 
+import Distribution.Simple.Utils (xargs)
 
 -- Define a datatype of Tree
 data Tree a = Leaf
@@ -37,9 +38,24 @@ main :: IO ()
 main = do
     let intTree1  = sampleTree 1
         intTree2  = sampleTree 5
+        finalTree = (+) <$> intTree1 <*> intTree2
     
+    putStrLn "First Tree"
     print $ intTree1
+    putStrLn "Second Tree"
     print $ intTree2
-
-    let finalTree = (+) <$> intTree1 <*> intTree2
+    putStrLn "Final Tree"
     print $ finalTree
+    putStrLn "Checking Applicatives Laws"
+    putStrLn "pure id <*> intTree1 == intTree1"
+    print $ (pure id <*> intTree1)
+    putStrLn "pure id <*> intTree2 == intTree2"
+    print $ (pure id <*> intTree2) 
+    putStrLn "Composition: pure (.) <*> u <*> v <*> w == u <*> (v <*> w)"
+
+    let square x = x * x
+        double x = x + x 
+    
+    putStrLn "(pure (.) <*> pure square <*> pure double <*> intTree1) == (pure square <*> (pure double <*> intTree))"
+    print $ (pure (.) <*> pure square <*> pure double <*> intTree1)
+    print $ (pure (.) <*> pure square <*> pure double <*> intTree1) == (pure square <*> (pure double <*> intTree1))
